@@ -1,0 +1,8 @@
+
+kpython:S2208"GImport only needed names or import the module and then use its members.(öæÈìûÿÿÿÿ8–Åžã÷0
+kpython:S930"MRemove 2 unexpected arguments; 'file_manager' expects 0 positional arguments.(íÞ½°8›Åžã÷0
+mpython:S930"JRemove 2 unexpected arguments; 'check_box' expects 0 positional arguments.(ì¨Æèþÿÿÿÿ8ŸÅžã÷0
+gpython:S930?"IRemove 2 unexpected arguments; 'new_page' expects 1 positional arguments.(¦“Œ¼8§ÿÞã÷0
+ipython:S930O"KRemove 2 unexpected arguments; 'pagination' expects 1 positional arguments.(—ó–û8£¿æã÷0
+Rsecrets:S6290""2Make sure this AWS Access Key ID is not disclosed.(¾®¢é8ûÄžã÷0
+Wsecrets:S6290+"2Make sure this AWS Access Key ID is not disclosed.(â…’âøÿÿÿÿ8üÄžã÷0

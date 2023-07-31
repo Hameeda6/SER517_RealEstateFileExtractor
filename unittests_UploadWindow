@@ -1,0 +1,76 @@
+import unittest
+from PyQt6.QtWidgets import QApplication, QDialog, QTextEdit, QPushButton,QWidget
+from PyQt6.QtWidgets import QLabel
+from PyQt6.QtCore import Qt,QTimer
+from PyQt6.QtWidgets import QProgressDialog
+import sys
+import os
+from HomePage import UploadWindow
+from HomePage import viewWindow
+#from HomePage import welcomeWindow
+from HomePage import downloadWindow
+
+class TestDownloadWindow(unittest.TestCase):
+    def setUp(self):
+        self.app = QApplication(sys.argv)
+        self.window = downloadWindow()
+
+    def test_handle_ok_button_click(self):
+        #self.window.timer.start()  # start the timer
+        self.window.handle_ok_button_click()
+        progress_dialog = self.window.progress_dialog
+        self.assertIsInstance(progress_dialog, QProgressDialog)
+        self.assertEqual(progress_dialog.windowTitle(), "Download Progress")
+        self.assertEqual(progress_dialog.labelText(), "Please wait while we open the browser...")
+        self.assertTrue(progress_dialog.isVisible())
+        timer = self.window.timer
+        self.assertIsInstance(timer, QTimer)
+        self.assertNotEqual(timer.interval(), 10000)
+
+    def tearDown(self):
+        self.window.close()
+        self.app.quit()
+        
+class TestUploadWindow(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.app = QApplication(sys.argv)
+        cls.window = UploadWindow()
+        cls.window.show()
+
+    def test_tokentextbox_exists(self):
+        self.assertIsNotNone(self.window.tokentextbox)
+    
+    def test_textbox(self):
+        textbox = self.window.findChild(QTextEdit, "textbox")
+        self.assertIsNotNone(self.window.textbox)
+
+    def test_window_title(self):
+        self.assertEqual(self.window.windowTitle(), 'UPLOAD THE FILE TO DROPBOX')
+        
+class TestviewWindow(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.app = QApplication(sys.argv)
+        filename = ['file1.txt', 'file2.txt', 'file3.txt']
+        cls.window = viewWindow(filename)
+        cls.window.show()
+
+    def test_windowTitle(self):
+        self.assertEqual(self.window.windowTitle(), 'VIEW THE BROWSED FILES')
+
+    def test_windowGeometry(self):
+        self.assertEqual(self.window.geometry().getRect(), (100, 100, 700, 500))
+
+    def test_label(self):
+        label = self.window.findChild(QLabel)
+        self.assertEqual(label.text(), 'THE FILES BROWSED ARE:')
+        
+    def test_labelAlignment(self):
+        label = self.window.findChild(QLabel)
+        self.assertEqual(label.alignment(), Qt.AlignmentFlag.AlignCenter)
+        
+
+        
+if __name__ == '__main__':
+    unittest.main(argv=[sys.argv[0]])

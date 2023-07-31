@@ -1,0 +1,3 @@
+([('HomePage',
+   '/Users/sarfraz/Desktop/Projects/SER517_Team5_RealEstate_Spring2023/dist/HomePage',
+   'EXECUTABLE')],)
